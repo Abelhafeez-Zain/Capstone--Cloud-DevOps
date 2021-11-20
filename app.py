@@ -1,7 +1,7 @@
 from flask import Flask
 
 app = Flask(__name__)
-fail lint with error
+
 @app.route('/')
 def home():
     html = "<h1 style='text-align: center;'>Welcome to Cloud DevOps Engineer. My name is Abdelhafeez Zain</h1>"
