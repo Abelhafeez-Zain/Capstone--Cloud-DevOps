@@ -135,11 +135,10 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "94:49:63:28:7b:44:5a:cc:dc:25:f8:2d:19:f9:f7:04"
       - attach_workspace:
           at: ~/
+      - add_ssh_keys: 
+          fingerprints: [94:49:63:28:7b:44:5a:cc:dc:25:f8:2d:19:f9:f7:04]
       - run:
           name: Install dependencies
           command: |
@@ -147,7 +146,6 @@ jobs:
       - run:
           name: Configure server
           command: |
-            ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
             if grep -q "No changes to deploy" ~/checkIfDeployed.txt
               then
                 cat ~/inventory.txt
@@ -157,15 +155,16 @@ jobs:
                 cd ansible
                 ansible-playbook -i ~/inventory.txt configure-server.yml
               fi
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: false    
 
   configure-cluster:
     docker:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "94:49:63:28:7b:44:5a:cc:dc:25:f8:2d:19:f9:f7:04"
+      - add_ssh_keys: 
+          fingerprints: [94:49:63:28:7b:44:5a:cc:dc:25:f8:2d:19:f9:f7:04]
       - attach_workspace:
           at: ~/
       - run:
@@ -184,6 +183,8 @@ jobs:
                 cd ansible
                 ansible-playbook -i ~/inventory.txt configure-cluster.yml
               fi
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: false    
       - run:
           name: Wait for LoadBalancer's domain to become reachable
           command: |
@@ -196,6 +197,8 @@ jobs:
                 echo "Wait 60 seconds..."
                 sleep 60
               fi
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: false    
       - run:
           name: Display the LoadBalancer's DNS name
           command: |
