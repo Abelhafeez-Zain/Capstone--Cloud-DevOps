@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: capstone-project-deployment
+  name: zain1-capstone-project-deployment
   labels:
     app: capstone-project-app
 spec:
