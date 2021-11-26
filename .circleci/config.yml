@@ -144,18 +144,19 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-      # - run:
-      #     name: Configure server
-      #     command: |
-      #       if grep -q "No changes to deploy" ~/checkIfDeployed.txt
-      #         then
-      #           cat ~/inventory.txt
-      #           echo "Our management instances are already configured."
-      #         else
-      #           cat ~/inventory.txt
-      #           cd ansible
-      #           ansible-playbook -i ~/inventory.txt configure-server.yml
-      #         fi
+      - run:
+          name: Configure server
+          command: |
+            ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+            if grep -q "No changes to deploy" ~/checkIfDeployed.txt
+              then
+                cat ~/inventory.txt
+                echo "Our management instances are already configured."
+              else
+                cat ~/inventory.txt
+                cd ansible
+                ansible-playbook -i ~/inventory.txt configure-server.yml
+              fi
 
   configure-cluster:
     docker:
