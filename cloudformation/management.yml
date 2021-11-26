@@ -1,6 +1,6 @@
 Description: >
-  Felix Lutze / Capstone Project
-  Creates two individual hosts to manage the EKS-Cluster
+  ABDO ZAIN / Capstone Project 
+  Creates ec2 for EKS-Cluster
 
 Parameters:
   EnvironmentName:
@@ -9,7 +9,7 @@ Parameters:
     Type: String
   SSHKeyName:
     Description: SSH key for management access
-    Default: udacity
+    Default: udacityZain
     Type: String
   amiImageId:
     Description: Defines the Image-ID of the OS to deploy
