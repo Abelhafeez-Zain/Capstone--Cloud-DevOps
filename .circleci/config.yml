@@ -206,6 +206,8 @@ jobs:
             cd ansible
             ansible-playbook -i ~/inventory.txt save-elb-dns.yml
             cat ~/elb_dns.txt
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: false   
       - persist_to_workspace:
           root: ~/
           paths:
@@ -231,6 +233,8 @@ jobs:
             cat ~/inventory.txt
             cd ansible
             ansible-playbook -i ~/inventory.txt deploy-app.yml
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: false   
           no_output_timeout: 2m
 
 workflows:
