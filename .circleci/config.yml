@@ -200,10 +200,6 @@ jobs:
           environment:
             ANSIBLE_HOST_KEY_CHECKING: false    
       
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - elb_dns.txt
 
   deploy-docker:
     docker:
