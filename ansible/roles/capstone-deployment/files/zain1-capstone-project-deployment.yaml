@@ -1,28 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: capstone
+  name: capstone-project-deployment
   labels:
-    app: capstone
-  namespace: default
+    app: capstone-project-app
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
-      app: capstone
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+      app: capstone-project-app
   template:
     metadata:
       labels:
-        app: capstone
+        app: capstone-project-app
     spec:
       containers:
-        - image: abdelhafeezzain/capstoneproject
-          imagePullPolicy: Always
-          name: capstone-project-app
+        - name: capstone-project-app
+          image: abdelhafeezzain/capstoneproject
           ports:
             - containerPort: 80
