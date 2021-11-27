@@ -1,7 +1,5 @@
 # Capstone--Cloud-DevOps
 
-[![CircleCI](https://circleci.com/gh/Abelhafeez-Zain/Capstone--Cloud-DevOps/tree/main.svg?style=svg)](https://circleci.com/gh/Abelhafeez-Zain/Capstone--Cloud-DevOps/tree/main)
-
 
 About The Project
 
